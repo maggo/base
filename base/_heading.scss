@@ -1,6 +1,9 @@
 @charset "UTF-8";
 
+
 $header-margin-bottom: $base-line-height !default;
+$header-font-family: Helvetica Neue, Helvetica, sans-serif !default;
+$header-text-rendering: optimizeLegibility !default;
 
 $h1-font-size: rem(36) !default;
 $h1-line-height: $base-line-height * 2 !default;
@@ -24,6 +27,8 @@ $h6-line-height: $base-line-height !default;
 @include module('heading') {
   h1, h2, h3, h4, h5, h6 {
     margin: 0 0 $header-margin-bottom;
+    font-family: $header-font-family;
+    text-rendering: $header-text-rendering;
   }
 
   h1 {
