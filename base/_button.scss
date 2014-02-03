@@ -1,0 +1,120 @@
+@charset "UTF-8";
+
+@import "global";
+
+$button-padding: rem(8 12) !default;
+$button-background: white !default;
+$button-color: $base-font-color !default;
+$button-transition: background-color .2s !default;
+$button-border-radius: $base-radius !default;
+$button-border-width: $base-border-width !default;
+$button-border: $button-border-width solid $secondary-color !default;
+$button-line-height: rem(20) !default;
+$button-font-smoothing: $base-font-smoothing !default;
+$button-hover-color: $base-font-color !default;
+$button-hover-background: darken($button-background, 5%) !default;
+
+$button-primary-color: white !default;
+$button-primary-background-color: $primary-color !default;
+$button-primary-hover-background-color: lighten($button-primary-background-color, 5%) !default;
+
+$button-success-color: white !default;
+$button-success-background-color: #2ecc71 !default;
+$button-success-hover-background-color: lighten($button-success-background-color, 5%) !default;
+
+$button-alert-color: white !default;
+$button-alert-background-color: #e74c3c !default;
+$button-alert-hover-background-color: lighten($button-alert-background-color, 5%) !default;
+
+$button-warning-color: white !default;
+$button-warning-background-color: #f1c40f !default;
+$button-warning-hover-background-color: lighten($button-warning-background-color, 5%) !default;
+
+$button-disabled-color: white !default;
+$button-disabled-background-color: #bdc3c7 !default;
+$button-disabled-hover-background-color: lighten($button-disabled-background-color, 5%) !default;
+
+
+@mixin button {
+  display: inline-block;
+  padding: $button-padding;
+  background: $button-background;
+  color: $button-color;
+  border-radius: $button-border-radius;
+  border: $button-border;
+  margin: 0;
+  line-height: $button-line-height;
+  text-align: center;
+  vertical-align: middle;
+
+  @include transition($button-transition);
+  -webkit-appearance: none;
+  -webkit-font-smoothing: $button-font-smoothing;
+
+  &:hover, &:focus {
+    color: $button-hover-color;
+    background: $button-hover-background;
+    outline: none;
+  }
+}
+
+@mixin button-color($color, $background-color, $hover-background-color) {
+  color: $color;
+  background-color: $background-color;
+  border-color: transparent;
+
+  &:hover, &:focus {
+    background-color: $hover-background-color;
+  }
+}
+
+
+@include module('button') {
+  .button,
+  button,
+  input[type="submit"]{
+    @include button;
+
+    &.primary {
+      @include button-color($button-primary-color, $button-primary-background-color, $button-primary-hover-background-color);
+    }
+
+    &.success {
+      @include button-color($button-success-color, $button-success-background-color, $button-success-hover-background-color);
+    }
+
+    &.alert {
+      @include button-color($button-alert-color, $button-alert-background-color, $button-alert-hover-background-color);
+    }
+
+    &.warning {
+      @include button-color($button-warning-color, $button-warning-background-color, $button-warning-hover-background-color);
+    }
+
+    &.disabled {
+      @include button-color($button-disabled-color, $button-disabled-background-color, $button-disabled-hover-background-color);
+    }
+
+    &.block {
+      display: block;
+      width: 100%;
+    }
+
+    &.large {
+      padding: rem(11 16);
+      font-size: rem(18);
+      line-height: rem(22);
+    }
+
+    &.small {
+      padding: rem(5 10);
+      font-size: rem(14);
+    }
+
+    &.tiny {
+      font-size: rem(12);
+      padding: rem(0 5);
+      line-height: rem(18);
+    }
+  }
+}

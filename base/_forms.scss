@@ -1,0 +1,152 @@
+@charset "UTF-8";
+
+@import "global";
+
+$form-input-padding-vertical: rem(8) !default;
+$form-input-padding-horizontal: rem(12) !default;
+$form-input-border-width: $base-border-width !default;
+$form-input-border: $form-input-border-width solid $secondary-color !default;
+$form-input-border-radius: $base-radius !default;
+$form-input-background: transparent !default;
+$form-input-transition: border-color 0.2s !default;
+$form-input-box-shadow: none !default;
+$form-input-line-height: rem(20) !default;
+$form-input-placeholder-color: $secondary-color !default;
+$form-input-focus-border: 2px solid $primary-color !default;
+$form-input-disabled-background: rgba(0,0,0,0.05) !default;
+$form-input-error-border-color: $error-color !default;
+$form-input-success-border-color: $success-color !default;
+
+$form-row-margin-bottom: $base-line-height !default;
+
+$form-label-padding-top: rem(7.5) !default;
+
+$form-group-margin-bottom: rem(30) !default;
+
+
+@mixin form-group {
+  margin-bottom: $form-group-margin-bottom;
+
+  @include media(medium) {
+    .form-inline & {
+      display: inline-block;
+      margin: 0;
+      vertical-align: middle;
+    }
+  }
+}
+
+
+@include module('forms') {
+  label {
+    display: inline-block;
+  }
+
+  select,
+  textarea,
+  input[type="text"],
+  input[type="password"],
+  input[type="datetime"],
+  input[type="datetime-local"],
+  input[type="date"],
+  input[type="month"],
+  input[type="time"],
+  input[type="week"],
+  input[type="number"],
+  input[type="email"],
+  input[type="url"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="color"],
+  {
+    display: block;
+    width: 100%;
+    padding: $form-input-padding-vertical $form-input-padding-horizontal;
+    box-shadow: $form-input-box-shadow;
+    border: $form-input-border;
+    border-radius: $form-input-border-radius;
+    background: $form-input-background;
+    transition: $form-input-transition;
+    line-height: normal;
+    font-family: inherit;
+    font-size: inherit;
+    margin: 0;
+
+    height: $form-input-line-height + (2 * $form-input-padding-vertical) + (2 * $form-input-border-width);
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 0.01px;
+    text-overflow: '';
+
+    &:focus {
+      outline: none;
+      border: $form-input-focus-border;
+    }
+
+    &[disabled] {
+      background: $form-input-disabled-background;
+    }
+
+    &.error {
+      border-color: $form-input-error-border-color;
+    }
+
+    &.success {
+      border-color: $form-input-success-border-color;
+    }
+
+    &::-webkit-input-placeholder,
+    &:-moz-placeholder,
+    &::-moz-placeholder,
+    &:-ms-input-placeholder
+    {
+      color: $form-input-placeholder-color;
+    }
+
+    @include media(medium) {
+      .form-inline & {
+        display: inline-block;
+        width: auto;
+      }
+    }
+  }
+
+  textarea {
+    height: auto;
+    vertical-align: top;
+    overflow: auto;
+  }
+
+  select[multiple],
+  select[size] {
+    height: auto;
+  }
+
+  fieldset {
+    padding: 0;
+    border: 0;
+    margin: 0;
+  }
+
+  .form-row {
+    label {
+      padding: ($form-input-padding-vertical + $form-input-border-width) 0;
+      line-height: $form-input-line-height;
+    }
+
+    .columns {
+      margin-bottom: $form-group-margin-bottom;
+    }
+  }
+
+  .form-group {
+    @include form-group;
+  }
+
+  .form-static {
+    padding: ($form-input-padding-vertical + $form-input-border-width) 0;
+    line-height: $form-input-line-height;
+    margin: 0;
+  }
+}

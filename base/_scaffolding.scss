@@ -1,0 +1,48 @@
+@charset "UTF-8";
+
+
+$tile-background-color: $secondary-color !default;
+$tile-border-radius: 6px !default;
+$tile-color: $base-font-color !default;
+$tile-padding: ($base-line-height / 2) !default;
+
+$hr-margin-bottom: $base-line-height !default;
+$hr-border: 1px solid $secondary-color !default;
+
+
+@include module('scaffolding') {
+  *,
+  *:before,
+  *:after {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+  }
+
+  %tile {
+    background-color: $tile-background-color;
+    border-radius: $tile-border-radius;
+    color: $tile-color;
+    padding: $tile-padding;
+  }
+
+  hr {
+    margin-top: -1px;
+    margin-bottom: $hr-margin-bottom;
+    border: 0;
+    border-top: $hr-border;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .right {
+    float: right;
+  }
+
+  .left {
+    float: left;
+  }
+}

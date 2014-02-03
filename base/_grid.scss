@@ -1,0 +1,76 @@
+@charset "UTF-8";
+
+@import "global";
+
+$grid-row-width: rem(1140) !default;
+$grid-gutter-width: $base-gutter-width !default;
+$grid-column-count: $base-column-count !default;
+
+
+@mixin grid-row {
+  width: 100%;
+  max-width: $grid-row-width;
+  margin: 0 auto;
+  @include clearfix;
+}
+
+@mixin grid-column-setup {
+  position: relative;
+  padding: 0 ($grid-gutter-width / 2);
+}
+
+@mixin grid-column($columns) {
+  width: percentage($columns / $grid-column-count);
+}
+
+@mixin grid-column-offset($columns) {
+  margin-left: percentage($columns / $grid-column-count);
+}
+
+@mixin grid-column-position($type, $columns) {
+  $offset: percentage($columns / $grid-column-count);
+  @if $type == pull { $offset: $offset * -1 }
+  left: $offset;
+}
+
+
+@include module('grid') {
+  // Sexy automatic grid generation for every media query defined
+  .row {
+    @include grid-row;
+
+    .row {
+      margin: 0 (-$grid-gutter-width / 2);
+      width: auto;
+    }
+  }
+
+  .columns {
+    @include grid-column-setup;
+
+    @each $mediaquery in $mediaqueries {
+      $id: nth($mediaquery, 1);
+
+      @include media($id) {
+        @for $i from 1 through $grid-column-count {
+          &.#{$id}-#{$i} {
+            @include grid-column($i);
+            float: left;
+          }
+
+          &.#{$id}-offset-#{$i} {
+            @include grid-column-offset($i);
+          }
+
+          &.#{$id}-push-#{$i} {
+            @include grid-column-position(push, $i);
+          }
+
+          &.#{$id}-pull-#{$i} {
+            @include grid-column-position(pull, $i);
+          }
+        }
+      }
+    }
+  }
+}

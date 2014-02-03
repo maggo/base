@@ -1,0 +1,117 @@
+@charset "UTF-8";
+
+@import "global";
+
+
+$body-color: $base-font-color !default;
+$body-line-height: $base-line-height !default;
+$body-font-size: $base-font-size !default;
+$body-font-smoothing: $base-font-smoothing !default;
+
+$paragraph-margin-bottom: $base-line-height !default;
+
+$anchor-text-decoration: none !default;
+$anchor-color: $primary-color !default;
+$anchor-color-hover: darken($primary-color, 10%) !default;
+$anchor-transition: color .1s !default;
+
+$strong-font-weight: bold !default;
+$italic-font-style: italic !default;
+$underlined-text-decoration: underline !default;
+$strike-text-decoration: line-through !default;
+
+$small-font-size: 80% !default;
+
+$abbr-border: 1px dotted !default;
+
+$code-font-family: monospace, serif !default;
+
+$mark-color: white !default;
+$mark-background-color: #34baff !default;
+
+$blockquote-border: rem(4) solid $secondary-color !default;
+$blockquote-margin-bottom: $base-line-height !default;
+$blockquote-padding: ($base-line-height / 2) $base-line-height !default;
+$blockquote-cite-color: lighten($base-font-color, 50%) !default;
+$blockquote-cite-font-size: 0.8em !default;
+
+$pre-margin-bottom: $base-line-height !default;
+
+
+@include module('type') {
+  body {
+    line-height: $body-line-height;
+    font-size: $body-font-size;
+    color: $body-color;
+    -webkit-font-smoothing: $body-font-smoothing;
+  }
+
+  p {
+    margin-top: 0;
+    margin-bottom: $paragraph-margin-bottom;
+  }
+
+  a {
+    color: $anchor-color;
+    text-decoration: $anchor-text-decoration;
+    @include transition($anchor-transition);
+
+    &:hover, &:focus {
+      text-decoration: $anchor-text-decoration;
+      color: $anchor-color-hover;
+    }
+  }
+
+  b, strong {
+    font-weight: $strong-font-weight;
+  }
+
+  i, cite, em, var, address, dfn {
+    font-style: $italic-font-style;
+  }
+
+  u, ins {
+    text-decoration: $underlined-text-decoration;
+  }
+
+  s, strike, del {
+    text-decoration: $strike-text-decoration;
+  }
+
+  small {
+    font-size: $small-font-size;
+  }
+
+  abbr[title] {
+    border-bottom: $abbr-border;
+  }
+
+  code, kbd, pre, samp {
+    font-family: $code-font-family;
+  }
+
+  mark {
+    font-color: $mark-color;
+    background-color: $mark-background-color;
+  }
+
+  blockquote {
+    border-left: $blockquote-border;
+    margin: 0 0 $blockquote-margin-bottom;
+    padding: $blockquote-padding;
+
+    cite {
+      color: $blockquote-cite-color;
+      font-size: $blockquote-cite-font-size;
+      display: block;
+      &:before {
+        content: "\2010 ";
+      }
+    }
+  }
+
+  pre {
+    @extend %tile;
+    margin: 0 0 $pre-margin-bottom 0;
+  }
+}

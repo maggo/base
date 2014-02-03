@@ -1,0 +1,75 @@
+@charset "UTF-8";
+
+@import "global";
+@import "button";
+
+$button-group-column-count: $base-column-count !default;
+$button-group-border-width: $button-border-width !default;
+$button-group-radius: $button-border-radius !default;
+
+
+@mixin button-group {
+  list-style: none;
+
+  @include clearfix;
+}
+
+@mixin button-group-item() {
+  float: left;
+
+  &.button,
+  & .button,
+  & button {
+    border-radius: 0;
+    border-right-width: 0;
+  }
+
+  &:first-child {
+    &.button,
+    & .button,
+    & button {
+      border-radius: $button-group-radius 0 0 $button-group-radius;
+    }
+  }
+
+  &:last-child {
+    &.button,
+    & .button,
+    & button {
+      border-radius: 0 $button-group-radius $button-group-radius 0;
+      border-right-width: $button-group-border-width;
+    }
+  }
+}
+
+
+@include module('button-group') {
+  .button-group {
+    @include button-group;
+
+    > * {
+      @include button-group-item;
+    }
+
+    @for $i from 1 through 12 {
+      &.even-#{$i} {
+        width: 100%;
+
+        > * {
+          width: 100% / $i;
+        }
+      }
+    }
+
+    &[class*="even-"] {
+      > * {
+        &.button,
+        & .button,
+        & button {
+          display: block;
+          width: 100%;
+        }
+      }
+    }
+  }
+}

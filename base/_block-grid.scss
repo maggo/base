@@ -1,0 +1,63 @@
+@charset "UTF-8";
+
+@import "global";
+
+$block-grid-gutter: $base-gutter-width !default;
+$block-grid-columns: 12 !default;
+
+
+@mixin block-grid-container {
+  margin: 0 (-$block-grid-gutter / 2);
+  padding: 0;
+  @include clearfix;
+
+  // we're expecting this to be used with lists
+  list-style: none;
+}
+
+@mixin block-grid-block($columns) {
+  padding: 0 ($block-grid-gutter / 2);
+  width: 100% / $columns;
+  float: left;
+
+  &:nth-of-type(#{$columns}n+1) {
+    clear: left;
+  }
+
+  &:nth-of-type(n) {
+    clear: none;
+  }
+}
+
+@mixin block-grid($columns) {
+  @include block-grid-container;
+
+  > * {
+    @include block-grid-block($columns);
+  }
+}
+
+
+@include module('block-grid') {
+  .block-grid {
+    @include block-grid-container;
+
+    > * {
+      @include block-grid-block(1);
+    }
+
+    @each $mediaquery in $mediaqueries {
+      $query-id: nth($mediaquery, 1);
+
+      @include media($query-id) {
+        @for $i from 1 through $block-grid-columns {
+          &.#{$query-id}-#{$i} {
+            > * {
+              @include block-grid-block($i);
+            }
+          }
+        }
+      }
+    }
+  }
+}
