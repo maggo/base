@@ -8,6 +8,7 @@ $body-line-height: $base-line-height !default;
 $body-font-size: $base-font-size !default;
 $body-font-smoothing: $base-font-smoothing !default;
 $body-font-family: Helvetica Neue, Helvetica, sans-serif !default;
+$body-background: none !default;
 
 $paragraph-margin-bottom: $base-line-height !default;
 
@@ -44,6 +45,7 @@ $pre-margin-bottom: $base-line-height !default;
     line-height: $body-line-height;
     font-size: $body-font-size;
     font-family: $body-font-family;
+    background: $body-background;
     color: $body-color;
     -webkit-font-smoothing: $body-font-smoothing;
   }
