@@ -19,7 +19,7 @@ $button-primary-background-color: $primary-color !default;
 $button-primary-hover-background-color: lighten($button-primary-background-color, 5%) !default;
 
 $button-success-color: white !default;
-$button-success-background-color: #2ecc71 !default;
+$button-success-background-color: $success-color !default;
 $button-success-hover-background-color: lighten($button-success-background-color, 5%) !default;
 
 $button-alert-color: white !default;
