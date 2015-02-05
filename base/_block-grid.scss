@@ -20,12 +20,12 @@ $block-grid-columns: 12 !default;
   width: 100% / $columns;
   float: left;
 
-  &:nth-of-type(#{$columns}n+1) {
-    clear: left;
-  }
-
   &:nth-of-type(n) {
     clear: none;
+  }
+  
+  &:nth-of-type(#{$columns}n+1) {
+    clear: left;
   }
 }
 
