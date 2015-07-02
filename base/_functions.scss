@@ -5,7 +5,7 @@ $rem-base: 16 !default;
 
 @mixin module($name) {
   @if not index($modules, $name) {
-    $modules: append($modules, $name);
+    $modules: append($modules, $name) !global;
     @content;
   }
 }
